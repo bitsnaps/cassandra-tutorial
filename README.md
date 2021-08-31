@@ -52,6 +52,16 @@ CREATE TABLE student (
    student_phone varint
 );
 ```
+## Data Types:
+You can use either a simple data types:
+
+Numbers: int, decimal, double, float, timestamp, varint, bigint, counter
+Strings: varchar, text, ascii, inet, timestamp
+uuids: uuid, timeuuid
+booleans: Boolean
+blob: blob
+
+You can also use one of collection (`set<>`, `list<>`, `map<>`) data type, or you can also create their own custom data types using `CREATE TYPE` clause.
 
 ## Alter table
 Similar to RDBMS:
