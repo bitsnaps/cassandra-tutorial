@@ -260,3 +260,16 @@ SELECT age, name, birthday FROM cyclist_by_age WHERE age = 33;
 Notes:
 - The `WHERE` clause must include all primary key columns with the IS NOT NULL phrase so that only rows with data for all the primary key columns are copied to the materialized view.
 - As with any table, the materialized view must specify the primary key columns. Because cyclist_mv, the source table, uses cid as its primary key, cid must be present in the materialized view's primary key.
+
+# Snitches
+A snitch determines which datacenters and racks nodes belong to, some possible values are:
+- The **SimpleSnitch** (this is default value) is used only for single-datacenter deployments (not recommended for production).
+- **PropertyFileSnitch** Determines the location of nodes by rack and datacenter.
+- **GossipingPropertyFileSnitch** Automatically updates all nodes using gossip when adding new nodes and is recommended for production.
+- **Dynamic snitching** Monitors the performance of reads from the various replicas and chooses the best replica based on this history.
+You can configure Snitches at `$CASSANDRA_HOME/conf/cassandra.yml ` configuration file:
+```
+# You can use a custom Snitch by setting this to the full class name
+# of the snitch, which will be assumed to be on your classpath.
+endpoint_snitch: SimpleSnitch
+```
