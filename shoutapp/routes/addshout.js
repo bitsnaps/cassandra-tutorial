@@ -2,14 +2,6 @@ var express = require('express');
 var router = express.Router();
 var Cassandra = require('cassandra-driver');
 
-var client = new Cassandra.Client({
-  contactPoints: ['127.0.0.1'],
-  localDataCenter: 'datacenter1'
-});
-client.connect(function (err, result) {
-  console.log('Cassandra connected: addshout');
-});
-
 /* Show User add form */
 router.get('/', function(req, res) {
   res.render('adduser');
@@ -31,6 +23,7 @@ router.post('/', function (req, res) {
   },
   ];
   queryOptions = [];
+  var client = req.app.get('client');
   client.batch(queries, queryOptions, function (err) {
     if (err){
       res.status(404).send({msg: err});

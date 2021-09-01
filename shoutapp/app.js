@@ -3,14 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var Cassandra = require('cassandra-driver');
-
-var client = new Cassandra.Client({
-  contactPoints: ['127.0.0.1']
-});
-client.connect(function (err, result) {
-  console.log('Cassandra connected.');
-});
+var { Client } = require('cassandra-driver');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -39,6 +32,21 @@ app.use('/adduser', addUserRouter);
 app.use('/edituser', editUserRouter);
 app.use('/shouts', shoutsRouter);
 app.use('/addshout', addShoutRouter);
+
+// Create and configure Cassandra client
+var client = new Client({
+  contactPoints: ['127.0.0.1'],
+  localDataCenter: 'datacenter1'
+});
+client.connect(function (err, result) {
+  if (err){
+    console.log('Could not connect to Cassandra server!');
+  } else {
+    console.log('Cassandra connected.');
+  }
+});
+
+app.set('client', client);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
