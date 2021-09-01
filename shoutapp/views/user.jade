@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  a(href="/users") Back to Users
+  h1= "User Info"
+  ul
+    li Full Name:
+      strong  #{user.name}
+    li User Name:
+      strong  #{user.username}
+    li Address:
+      strong  #{user.email}
+    div
+      a(class="edituser", href="/edituser/#{user.username}") Edit User
+      |
+      a(class="deleteuser", href="#", data-user="#{user.username}") Delete User

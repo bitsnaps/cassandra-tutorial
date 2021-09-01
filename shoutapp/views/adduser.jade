@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  a(href="/users") Back to Users
+  h1= "Add User"
+  form#formAddUser(name="adduser", method="post", action="/adduser")
+    div
+      input#inputUserName(type="text", placeholder="Enter Username", name="username")
+    div
+      input#inputPassword(type="password", placeholder="Enter your password", name="password")
+    div
+      input#inputEmail(type="email", placeholder="Enter your email", name="email")
+    div
+      input#inputFullName(type="text", placeholder="Enter your full name", name="name")
+    div
+      button#btnSubmit(type="submit") Submit

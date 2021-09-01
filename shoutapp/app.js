@@ -3,9 +3,20 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var Cassandra = require('cassandra-driver');
+
+var client = new Cassandra.Client({
+  contactPoints: ['127.0.0.1']
+});
+client.connect(function (err, result) {
+  console.log('Cassandra connected.');
+});
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var userRouter = require('./routes/user');
+var addUserRouter = require('./routes/adduser');
+var editUserRouter = require('./routes/edituser');
 
 var app = express();
 
@@ -21,6 +32,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/user', userRouter);
+app.use('/adduser', addUserRouter);
+app.use('/edituser', editUserRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

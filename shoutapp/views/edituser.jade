@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  a(href="/users") Back to Users
+  h1= "Edit User"
+  form#formAddUser(name="edituser", method="post", action="/edituser")
+    div
+      input#inputUserName(type="text", placeholder="Enter Username", name="username", value="#{user.username}")
+    div
+      input#inputPassword(type="password", placeholder="Enter your password", name="password", value="#{user.password}")
+    div
+      input#inputEmail(type="email", placeholder="Enter your email", name="email", value="#{user.email}")
+    div
+      input#inputFullName(type="text", placeholder="Enter your full name", name="name", value="#{user.name}")
+    div
+      button#btnSave(type="submit") Save
