@@ -1,0 +1,26 @@
+extends layout
+
+block content
+  h1= Shouts
+  form#formAddShout(name="addshout", method="post", action="/addshout")
+    div
+      label User Name
+      select(name="username")
+        each user, i in users
+          option(value="#{user.username}") #{user.username}
+      br
+      div
+        textarea(name="body", placeholder="Shout something!", cols="50", rows="5")
+      br
+      div
+        input#btnSubmit(type="submit") Submit
+  br
+  if shouts.length > 1
+    p There are: #{shouts.length} shout(s)
+  else
+    a(href="/shouts") Back to Shouts
+  ul
+    each shout, i in shouts
+      li <strong>
+        a(href="/shouts/#{shout.username}") #{shout.username} </strong>:
+        | #{shout.body}

@@ -17,6 +17,8 @@ var usersRouter = require('./routes/users');
 var userRouter = require('./routes/user');
 var addUserRouter = require('./routes/adduser');
 var editUserRouter = require('./routes/edituser');
+var shoutsRouter = require('./routes/shouts');
+var addShoutRouter = require('./routes/addshout');
 
 var app = express();
 
@@ -35,6 +37,8 @@ app.use('/users', usersRouter);
 app.use('/user', userRouter);
 app.use('/adduser', addUserRouter);
 app.use('/edituser', editUserRouter);
+app.use('/shouts', shoutsRouter);
+app.use('/addshout', addShoutRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
