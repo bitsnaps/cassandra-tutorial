@@ -6,4 +6,9 @@ html
     script(src='https://code.jquery.com/jquery-latest.min.js')
     script(src='/javascripts/main.js')
   body
-    block content
+    .container
+      header
+        a(href="/")
+          h1 ShoutApp
+      .main
+        block content

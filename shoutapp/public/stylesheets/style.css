@@ -6,3 +6,26 @@ body {
 a {
   color: #00B7FF;
 }
+.container {
+  width: 960px;
+  margin: 0 auto;
+  overflow: auto;
+  border: 1px solid #ccc;
+}
+header {
+  background: #333;
+  color: #fff;
+  padding: 15px;
+}
+.main {
+  padding: 15px;
+}
+input {
+  margin-bottom: 10px;
+}
+input[type="text"],input[type="password"] {
+  height: 25px;
+  width: 230px;
+  border: 1px solid #ccc;
+  padding: 3px;
+}
