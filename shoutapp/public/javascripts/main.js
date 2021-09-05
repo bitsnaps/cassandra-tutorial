@@ -1,5 +1,6 @@
 $(function () {
   $('.deleteuser').on('click', deleteUser);
+  $('.deleteshout').on('click', deleteShout);
 });
 
 function deleteUser() {
@@ -16,4 +17,15 @@ function deleteUser() {
   } else {
     return false;
   }
+}
+
+function deleteShout() {
+  event.preventDefault();
+  $.ajax({
+    type: 'DELETE',
+    url: '/shouts/'+$(this).data('shout-id')+'/'+$(this).data('username'),
+    success: function () {
+      window.location.replace('/shouts');
+    }
+  });
 }
