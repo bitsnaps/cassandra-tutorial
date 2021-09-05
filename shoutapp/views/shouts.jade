@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  h1= Shouts
+  h1 Shouts Management
   form#formAddShout(name="addshout", method="post", action="/addshout")
     div
       label User Name
@@ -15,12 +15,29 @@ block content
       div
         input#btnSubmit(type="submit") Submit
   br
-  if shouts.length > 1
-    p There are: #{shouts.length} shout(s)
-  else
-    a(href="/shouts") Back to Shouts
+  div#link
+  script.
+    if (document.location.pathname.length > 8){
+      var shoutsUrl = document.createElement('a');
+      shoutsUrl.innerText = 'Back to Shouts';
+      shoutsUrl.href = '/shouts';
+
+      var userUrl = document.createElement('a');
+      userUrl.innerText = 'User Info (#{shouts[0].username})';
+      userUrl.href = '/user/#{shouts[0].username}';
+
+      var link = document.getElementById('link');
+      link.appendChild(shoutsUrl);
+      link.appendChild(document.createElement('br'));
+      link.appendChild(userUrl);
+    } else {
+      var p = document.createElement('p');
+      p.innerText = 'There are: #{shouts.length} shout(s)';
+      document.getElementById('link').appendChild(p);
+    }
   ul
     each shout, i in shouts
       li <strong>
-        a(href="/shouts/#{shout.username}") #{shout.username} </strong>:
+        a(href="/shouts/#{shout.username}") #{shout.username} </strong>
         | #{shout.body}
+        a(href="#", class="deleteshout", data-shout-id="#{shout.shout_id}", data-username="#{shout.username}") ( delete )
