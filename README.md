@@ -109,7 +109,7 @@ nodetool status
 ## Cleanup
 Cleans up keyspaces and partition keys no longer belonging to a node.
 ```
-nodetool cleaup
+nodetool cleanup
 ```
 
 ## Compound (Composite) Keys
