@@ -91,6 +91,7 @@ ALTER TABLE student ALTER student_name TYPE varchar;
 ALTER TABLE student ADD state varchar;
 ALTER TABLE student DROP student_fees;
 ```
+P.S. You cannot re-add previously dropped column if the type of the new column is incompatible with previous type.
 
 ## Insert data
 ```
