@@ -141,6 +141,21 @@ You can make the collection empty using:
 UPDATE emp SET emails = {} WHERE id = d3f50980-09d8-11ec-aafd-31a47b61278e;
 ```
 
+## SELECT and INSERT in JSON format:
+You can select (or insert) data in JSON format:
+```
+SELECT JSON * FROM emp;
+
+INSERT INTO emp JSON '{
+  "empID" : 5,
+  "deptID" : 3,
+  "id" : "829aa84a-4bba-411f-a4fb-38167a987cda",
+  "first_name" : "Peter",
+  "last_name" : "PARKER"
+  }';
+
+```
+
 ## Partition keys, Clustering Keys
 Primary Keys can be complicated to handle different complex situations when storing data in multiple nodes, here is an example of Clustering keys and partition key:
 ```
